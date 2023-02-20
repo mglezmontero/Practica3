@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <h2 class="cabecera">Calculadora de CORE</h2>
+    <h2 id="info" class="grande" title="Info sobre el número">Info sobre el número</h2>
+    <input type="text" id="pantalla">
+
+    <button id="cuadrado" onclick="sq()">cuadrado</button>
+    <button id="factorial" onclick="fact()">factorial</button>
+    <button id="raiz" onclick="sqr()">raíz</button>
+    <button id="suma" onclick="add()">+</button>
+    <button id="resta" onclick="sub()">-</button>
+    <button id="multiplicacion" onclick="mul()">*</button>
+    <button id="division" onclick="div()">/</button>
+    <button id="igual" onclick="eq()">=</button>
+
+
+
+    <script>
+        function sq (){
+            
+            numerito = document.getElementById("pantalla").value;
+            resultado = numerito * numerito;
+            document.getElementById("pantalla").value = resultado;
+            rellenar_info(resultado);
+        }
+
+        function fact() {
+              // Validación de entrada
+            if (isNaN(numerito) || !Number.isInteger(parseFloat(numerito)) || parseInt(numerito) < 0) {
+                document.getElementById("pantalla").value = "Error";
+                document.getElementById("info").textContent = "Info: Entrada no válida";
+                return;
+            }
+
+            numerito = document.getElementById("pantalla").value;
+            resultado = 1;
+            for (i = numerito; i >= 1; i--) {
+            resultado = resultado * i;
+            }
+            document.getElementById("pantalla").value = resultado;
+            rellenar_info(resultado);
+        }
+
+        function sqr() {
+
+            numerito = document.getElementById("pantalla").value;
+            resultado = Math.sqrt(numerito);
+            document.getElementById("pantalla").value = resultado;
+            rellenar_info(resultado);
+        }
+
+        function add() {
+            num1 = document.getElementById("pantalla").value;
+            operacion = "+";
+            document.getElementById("pantalla").value = "";
+            rellenar_info(resultado);
+        }
+
+        function sub() {
+            num1 = document.getElementById("pantalla").value;
+            operacion = "-";
+            document.getElementById("pantalla").value = "";
+            rellenar_info(resultado);
+        }
+
+        function mul() {
+            num1 = document.getElementById("pantalla").value;
+            operacion = "*";
+            document.getElementById("pantalla").value = "";
+            rellenar_info(resultado);
+        }
+
+        function div() {
+            num1 = document.getElementById("pantalla").value;
+            operacion = "/";
+            document.getElementById("pantalla").value = "";
+            rellenar_info(resultado);
+        }
+
+        function eq() {
+            num2 = document.getElementById("pantalla").value;
+            var resultado = 0;
+            if (operacion == "+") {
+                resultado = parseFloat(num1) + parseFloat(num2);
+            } else if (operacion == "-") {
+                resultado = parseFloat(num1) - parseFloat(num2);
+            } else if (operacion == "*") {
+                resultado = parseFloat(num1) * parseFloat(num2);
+            } else if (operacion == "/") {
+                resultado = parseFloat(num1) / parseFloat(num2);
+            }
+            document.getElementById("pantalla").value = resultado;
+            rellenar_info(resultado);
+        }
+
+        function rellenar_info() {
+            var resultado = document.getElementById("pantalla").value;
+            var info = document.getElementById("info");
+            if (resultado < 100) {
+                info.textContent = "Info: El resultado es menor que 100";
+            } else if (resultado >= 100 && resultado <= 200) {
+                info.textContent = "Info: El resultado está entre 100 y 200";
+            } else {
+                info.textContent = "Info: El resultado es superior a 200";
+            }
+            info.classList.add("grande");
+        }
+
+
+        // 5. Tratamiento de errores
+        function validar(entrada) {
+            return /^-?\d+(\.\d+)?$/.test(entrada);
+        }
+
+
+
+    </script>
+</body>
+</html>
